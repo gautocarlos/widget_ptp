@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>  
+<title>Usig Geocoder tests</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://servicios.usig.buenosaires.gov.ar/usig-js/2.1/usig.GeoCoder.min.js"></script>
+<script type="text/javascript" src="geocode_utils.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+	  $(document).ready(function() {
+		  points=new PointCollection();
+		  jQuery("body").bind('all-geocoded',function(e){
+  		      console.log('all geocoded');
+  		  });
+          points.addPoint("florida 622");
+          points.addPoint("525 de mayo av.");
+          points.addPoint("Santa Fe Av. 1525");
+          points.addPoint("lavalle 3022");
+          points.addPoint("maipu 986");
+          points.geocode();
+	  });
+	</script>
+</body>
+</html>
