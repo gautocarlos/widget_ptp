@@ -80,32 +80,35 @@ RecorridosToDestinoMap.prototype.init=function(div){
 	t=t.replace(/%id/g,cp.id).replace(/%left_extended_width/g,left_extended_width).replace(/%std_width/g,cp.std_width).replace(/%extended_width_no_results/g,left_extended_width_no_results).replace(/%extended_width/g,cp.extended_width);
 	$('#'+cp.id+' #'+cp.id+'-styles').text(t);
 	// add expanded class to holder div on focus
-	$('#'+cp.id).hover(
+	$('#'+cp.id).click(
 		function(e){
-		    if(cp.extended_height_inc==null){
-		        var widget_height=$(this).height()
-		        cp.extended_height_inc=$(this).height();
-    			$(this).addClass('expanded');
-    			cp.extended_height_inc-=$(this).height();
-    			var map_height=$('#'+cp.id+" .mapwrapper .map").height();
-                map_height+=cp.extended_height_inc;
-    			var t="#"+cp.id+".expanded{min-height:"+widget_height+"px} #"+cp.id+".expanded .map{height:"+map_height+"px;}"+"#"+cp.id+" .recorridos{height:"+map_height+"px;}";
-    			$('#'+cp.id+' #'+cp.id+'-styles').append(t);
-		    }
-		    else{
-		        $(this).addClass('expanded');
-		    }
-    		cp.zoomToMarkers();
-		},
-		function(e){
-		    
+			if(!$(this).hasClass('expanded')&&!$(this).hasClass('no_results')){
+			    if(cp.extended_height_inc==null){
+				var widget_height=$(this).height();
+				cp.extended_height_inc=$(this).height();
+				$(this).addClass('expanded');
+				cp.extended_height_inc-=$(this).height();
+				var map_height=$('#'+cp.id+" .mapwrapper .map").height();
+				map_height+=cp.extended_height_inc;
+				var t="#"+cp.id+".expanded{min-height:"+widget_height+"px} #"+cp.id+".expanded .map{height:"+map_height+"px;}"+"#"+cp.id+" .recorridos{height:"+map_height+"px;}";
+				$('#'+cp.id+' #'+cp.id+'-styles').append(t);
+			    }
+			    else{
+				$(this).addClass('expanded');
+			    }
+			cp.reposition_dialog();
+			cp.zoomToMarkers();
+			}
 		}
-		// function(e){
-		//            $(this).removeClass('expanded');
-		//            cp.zoomToMarkers();
-		//        }
 	);
 };
+RecorridosToDestinoMap.prototype.reposition_dialog=function(){
+	var dialog=$('#usig_acv_search-value');
+	var ac=$('#widget_punto_a_punto #search-value');
+	var x = ac.offset();
+        dialog.css({left: x.left + "px"});
+	    
+}
 RecorridosToDestinoMap.prototype.initAutoComplete=function(){
 	var cp=this;
 	var options='';
@@ -137,7 +140,9 @@ RecorridosToDestinoMap.prototype.initAutoComplete=function(){
 	");
 	$('.close.search a').click(function(e){
 	    e.preventDefault();
+	    e.stopPropagation();
 	    $("#"+cp.id).removeClass('expanded');
+	    cp.reposition_dialog();
 	});
 	$('.destino.search #search-value-dest').change(function(){
 	    var select=$(this).children('option');
@@ -264,6 +269,8 @@ RecorridosToDestinoMap.prototype.buscarRecorridos=function(){
 			cp.recorridos=recorridos;
 			if(cp.recorridos.length>0){	
 			    $('#'+cp.id).removeClass('no_results');
+			    $('#'+cp.id).click();
+			    
     			var style='#'+cp.id+' .right .recorridos .recorrido.active:nth-child(%index) .references .color{background-color:%color;}';
     			for (var i=0,n=cp.recorridos.length; i<n; i++) {
     				var recorrido=cp.recorridos[i];
@@ -312,7 +319,6 @@ RecorridosToDestinoMap.prototype.resetRecorridos=function(){
     var cp=this;
     $('#'+cp.id).addClass('no_results');
 	if(cp.recorridos.length>0) {
-	    console.log('deleting');
 	    if(cp.origen!=null){
            $('#'+cp.id+' .right #recorridos').html('');
         }
