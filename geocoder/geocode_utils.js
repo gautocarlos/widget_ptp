@@ -70,7 +70,6 @@ GCPoint.prototype.geocode=function(){
           if(response instanceof usig.Punto){
               cp.pt=response;
               cp.geocoded=true;
-              console.log(cp.id+": "+response);
               jQuery("body").trigger('point-geocoded',[]);
           }else{
             console.log(cp.id+" "+response);

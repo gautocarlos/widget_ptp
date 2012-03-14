@@ -10,6 +10,7 @@
 	font-size:12px;
 	color:#393A39;
 }
+
 .pap_widget strong{
 	font-family:"MuseoSans700",Helvetica,Arial,Verdana,sans-serif;	
 }
@@ -22,6 +23,11 @@
 .pap_widget .wrapper{
 	border:thin solid #D3D3D3;
 	background-color:white;
+}
+.pap_widget.expanded .wrapper{
+	-moz-box-shadow: 0px 0px 5px #DDD;
+	-webkit-box-shadow: 0px 0px 5px #DDD;
+	box-shadow: 0px 0px 5px #DDD;
 }
 .pap_widget .left,.pap_widget .right{
 	position:relative;
@@ -41,13 +47,13 @@
 .pap_widget.expanded .mapwrapper{
 	padding-right:0px;
 }
-.pap_widget .search{
+.pap_widget .left .search{
 	width:194px;
 }
 .pap_widget .search span{
 	font-size:11px;
 }
-.pap_widget.expanded .search{
+.pap_widget.expanded .left .search{
 	float:left;
 	height:57px;
 }
@@ -81,12 +87,7 @@
 .pap_widget .search label{
 	color:#6D6F71;
 }
-.pap_widget .close{
-    display:none;
-}
-.pap_widget.expanded .close{
-    display:block;
-}
+
 .pap_widget .map{
 	height:400px;
 }
@@ -150,4 +151,45 @@
 }
 .pap_widget .recorridos .recorrido .detalle p{
 	margin-top:10px;
+}
+.pap_widget .actions{
+    position:relative;
+    width:100%;
+}
+.pap_widget .actions .search{
+    text-align:center;
+    border:1px solid #D1D1D1;
+    border-bottom:5px solid #D1D1D1;
+    background-color:#EEE;
+    width:176px;
+    margin-right:10px;
+    margin-bottom:10px;
+    cursor: pointer;
+}
+.pap_widget .actions .search a{
+    text-decoration:none;
+    color:#969696;
+    text-transform:uppercase;
+    font-size:15px;
+    letter-spacing:0.16em;
+    font-weight:bold;
+ }
+ .pap_widget .actions .search a:hover{
+    text-decoration:none;
+ }
+.pap_widget .actions .search.open{
+    position:relative;
+    display:block;
+    float:right
+}
+.pap_widget .actions .search.close{
+    display:none;
+}
+.pap_widget.expanded .actions .search.open{
+    display: none;
+}
+.pap_widget.expanded .actions .search.close{
+    position:relative;
+    display:block;
+    float:right;
 }

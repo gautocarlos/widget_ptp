@@ -3,14 +3,15 @@ function BasicMap(){
 	this.width;
 	this.ready=false;
 	this.map=null;
-	this.std_width=null;
+	this.std_weight=null;
+	this.border_width=null;
 	this.styles='<link rel="stylesheet" type="text/css" media="screen" href="fonts.css"/><link rel="stylesheet" type="text/css" media="screen" href="pap_widget.css"/>';
 }
 BasicMap.prototype.init=function(div){
 	var cp=this;
 	cp.id=div;
 	cp.std_width=$('#'+cp.id).outerWidth(true);
-	$('#'+cp.id).append("<div class='wrapper'><div class='left'></div><div class='right'></div><div class='clear'></div></div><style id='"+cp.id+"-styles'></style>");
+	$('#'+cp.id).append("<div class='wrapper'><div class='left'></div><div class='right'></div><div class='clear'></div><div class='actions'></div><div class='clear'></div></div><style id='"+cp.id+"-styles'></style>");
 	$('#'+cp.id+' .left').append("<div class='mapwrapper'><div id='"+cp.id+"-map' class='map'></div></div>");
 	this.map=new usig.MapaInteractivo(cp.id+"-map",{
 		includeToolbar:false,
@@ -57,7 +58,9 @@ RecorridosToDestinoMap.prototype.geocodeDestinos=function(destino){
         cp.init(cp.div);
         jQuery("body").bind('map-initiated',function(ev){
             cp.pinDestino(0);
+	    cp.map.api.numZoomLevels=2;
             cp.zoomToMarkers();
+	    cp.initActions();
             cp.initAutoComplete();
             //cp.initFocusButtons();
         });
@@ -74,33 +77,12 @@ RecorridosToDestinoMap.prototype.init=function(div){
 	$('#'+cp.id).addClass('pap_widget');
 	$('#'+cp.id).addClass('no_results');
 	// create style to append .left width based on the width of the div that contains the widget and the desired expanded width
-	var left_extended_width=cp.extended_width-cp.std_width;
+	var left_extended_width=cp.extended_width+2-cp.std_width;
 	var left_extended_width_no_results=cp.extended_width-10;
 	var t="#%id.expanded{min-height:500px;} #%id.expanded .left{width:%left_extended_widthpx;} #%id .right, #%id.expanded .right{width:%std_widthpx;} #%id.expanded .wrapper{position:absolute; top:0px; left:-%left_extended_widthpx; width:%extended_widthpx;} #%id.expanded.no_results .left{width:%extended_width_no_resultspx;} #%id.expanded.no_results .right{display:none}";
 	t=t.replace(/%id/g,cp.id).replace(/%left_extended_width/g,left_extended_width).replace(/%std_width/g,cp.std_width).replace(/%extended_width_no_results/g,left_extended_width_no_results).replace(/%extended_width/g,cp.extended_width);
 	$('#'+cp.id+' #'+cp.id+'-styles').text(t);
 	// add expanded class to holder div on focus
-	$('#'+cp.id).click(
-		function(e){
-			if(!$(this).hasClass('expanded')&&!$(this).hasClass('no_results')){
-			    if(cp.extended_height_inc==null){
-				var widget_height=$(this).height();
-				cp.extended_height_inc=$(this).height();
-				$(this).addClass('expanded');
-				cp.extended_height_inc-=$(this).height();
-				var map_height=$('#'+cp.id+" .mapwrapper .map").height();
-				map_height+=cp.extended_height_inc;
-				var t="#"+cp.id+".expanded{min-height:"+widget_height+"px} #"+cp.id+".expanded .map{height:"+map_height+"px;}"+"#"+cp.id+" .recorridos{height:"+map_height+"px;}";
-				$('#'+cp.id+' #'+cp.id+'-styles').append(t);
-			    }
-			    else{
-				$(this).addClass('expanded');
-			    }
-			cp.reposition_dialog();
-			cp.zoomToMarkers();
-			}
-		}
-	);
 };
 RecorridosToDestinoMap.prototype.reposition_dialog=function(){
 	var dialog=$('#usig_acv_search-value');
@@ -109,6 +91,46 @@ RecorridosToDestinoMap.prototype.reposition_dialog=function(){
         dialog.css({left: x.left + "px"});
 	    
 }
+RecorridosToDestinoMap.prototype.initActions=function(){
+	var cp=this;
+	$("#"+cp.id+' .actions').append("<div class='search close'>\
+	    <a href='#'>contraer</a>\
+	</div>");
+	$("#"+cp.id+' .actions').append("<div class='search open'>\
+	    <a href='#'>expandir</a>\
+	</div>");
+	$("#"+cp.id+' .actions').append("<div class='clear'></div>");
+	$('.open.search').click(function(e){
+		if(!$('#'+cp.id).hasClass('expanded')){
+		    if(cp.extended_height_inc==null){
+			var widget_height=$('#'+cp.id+' .wrapper').outerHeight();
+			cp.extended_height_inc=$('#'+cp.id).height();
+			$('#'+cp.id).addClass('expanded');
+			cp.extended_height_inc-=$('#'+cp.id+' .wrapper').outerHeight();
+			console.log($('#'+cp.id+' .wrapper').height());
+			var map_height=$('#'+cp.id+" .mapwrapper .map").height();
+			map_height+=cp.extended_height_inc;
+			var t="#"+cp.id+".expanded{min-height:"+widget_height+"px} #"+cp.id+".expanded .map{height:"+map_height+"px;}"+"#"+cp.id+" .recorridos{height:"+map_height+"px;}";
+			$('#'+cp.id+' #'+cp.id+'-styles').append(t);
+		    }
+		    else{
+			$('#'+cp.id).addClass('expanded');
+		    }
+		    cp.reposition_dialog();
+		    cp.zoomToMarkers();
+		}
+	    e.preventDefault();
+	    e.stopPropagation();
+	    $("#"+cp.id).addClass('expanded');
+	    cp.reposition_dialog();
+	});
+	$('.close.search').click(function(e){
+	    e.preventDefault();
+	    e.stopPropagation();
+	    $("#"+cp.id).removeClass('expanded');
+	    cp.reposition_dialog();
+	});
+};
 RecorridosToDestinoMap.prototype.initAutoComplete=function(){
 	var cp=this;
 	var options='';
@@ -133,17 +155,9 @@ RecorridosToDestinoMap.prototype.initAutoComplete=function(){
 			</select> \
 		</form> \
 	</div> \
-	<div class='search close'>\
-	    <a href='#'>Close</a>\
-	</div>\
 	<div class='clear'></div> \
 	");
-	$('.close.search a').click(function(e){
-	    e.preventDefault();
-	    e.stopPropagation();
-	    $("#"+cp.id).removeClass('expanded');
-	    cp.reposition_dialog();
-	});
+	
 	$('.destino.search #search-value-dest').change(function(){
 	    var select=$(this).children('option');
 	    $(this).children('option:selected').each(function(){
@@ -269,7 +283,7 @@ RecorridosToDestinoMap.prototype.buscarRecorridos=function(){
 			cp.recorridos=recorridos;
 			if(cp.recorridos.length>0){	
 			    $('#'+cp.id).removeClass('no_results');
-			    $('#'+cp.id).click();
+			    $('#'+cp.id+' .open.search').click();
 			    
     			var style='#'+cp.id+' .right .recorridos .recorrido.active:nth-child(%index) .references .color{background-color:%color;}';
     			for (var i=0,n=cp.recorridos.length; i<n; i++) {
