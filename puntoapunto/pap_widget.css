@@ -10,7 +10,9 @@
 	font-size:12px;
 	color:#393A39;
 }
-
+.pap_widget ol{
+    list-style-type: decimal;
+}
 .pap_widget strong{
 	font-family:"MuseoSans700",Helvetica,Arial,Verdana,sans-serif;	
 }
@@ -127,11 +129,11 @@
 	display:inline-block;
 }
 .pap_widget .recorridos .recorrido .references{
-	width:49%;
+	width:27%;
 	text-align:right;
 }
 .pap_widget .recorridos .recorrido .label{
-	width:49%;
+	width:71%;
 }
 .pap_widget .recorridos .recorrido .references .color{
 	width:15px;
@@ -149,7 +151,7 @@
 	text-align:right;
 	color:#5E8CBB;
 }
-.pap_widget .recorridos .recorrido .detalle p{
+.pap_widget .recorridos .recorrido .detalle li:nth-child(1){
 	margin-top:10px;
 }
 .pap_widget .actions{
@@ -157,7 +159,7 @@
     width:100%;
 }
 .pap_widget .actions .search{
-    text-align:center;
+    text-actionsgn:center;
     border:1px solid #D1D1D1;
     border-bottom:5px solid #D1D1D1;
     background-color:#EEE;
@@ -192,4 +194,9 @@
     position:relative;
     display:block;
     float:right;
+}
+
+/* Span objects inside recorridos list*/
+.pap_widget .recorridos .recorrido .label span.ramales,.pap_widget .recorridos .recorrido .detalle li span{
+    color:#3988AA;
 }

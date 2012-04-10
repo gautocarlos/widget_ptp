@@ -23,14 +23,6 @@ BasicMap.prototype.init=function(div){
 	// append stylesheet dynamically
 	$('head').append(cp.styles);
 };
-// BasicMap.prototype.addMarker=function(address,goto){
-//  if(!this.ready){
-//    this.markers.push(address);
-//  }else{
-//    var marker=this.map.addMarker(address,goto);
-//    this.markers.push(marker);
-//  }
-// };
 
 RecorridosToDestinoMap.prototype=new BasicMap();
 
@@ -77,7 +69,7 @@ RecorridosToDestinoMap.prototype.init=function(div){
 	$('#'+cp.id).addClass('pap_widget');
 	$('#'+cp.id).addClass('no_results');
 	// create style to append .left width based on the width of the div that contains the widget and the desired expanded width
-	var left_extended_width=cp.extended_width+2-cp.std_width;
+	var left_extended_width=cp.extended_width-cp.std_width;
 	var left_extended_width_no_results=cp.extended_width-10;
 	var t="#%id.expanded{min-height:500px;} #%id.expanded .left{width:%left_extended_widthpx;} #%id .right, #%id.expanded .right{width:%std_widthpx;} #%id.expanded .wrapper{position:absolute; top:0px; left:-%left_extended_widthpx; width:%extended_widthpx;} #%id.expanded.no_results .left{width:%extended_width_no_resultspx;} #%id.expanded.no_results .right{display:none}";
 	t=t.replace(/%id/g,cp.id).replace(/%left_extended_width/g,left_extended_width).replace(/%std_width/g,cp.std_width).replace(/%extended_width_no_results/g,left_extended_width_no_results).replace(/%extended_width/g,cp.extended_width);
@@ -88,8 +80,7 @@ RecorridosToDestinoMap.prototype.reposition_dialog=function(){
 	var dialog=$('#usig_acv_search-value');
 	var ac=$('#widget_punto_a_punto #search-value');
 	var x = ac.offset();
-        dialog.css({left: x.left + "px"});
-	    
+    dialog.css({left: x.left + "px"});    
 }
 RecorridosToDestinoMap.prototype.initActions=function(){
 	var cp=this;
@@ -107,7 +98,6 @@ RecorridosToDestinoMap.prototype.initActions=function(){
 			cp.extended_height_inc=$('#'+cp.id).height();
 			$('#'+cp.id).addClass('expanded');
 			cp.extended_height_inc-=$('#'+cp.id+' .wrapper').outerHeight();
-			console.log($('#'+cp.id+' .wrapper').height());
 			var map_height=$('#'+cp.id+" .mapwrapper .map").height();
 			map_height+=cp.extended_height_inc;
 			var t="#"+cp.id+".expanded{min-height:"+widget_height+"px} #"+cp.id+".expanded .map{height:"+map_height+"px;}"+"#"+cp.id+" .recorridos{height:"+map_height+"px;}";
@@ -231,7 +221,14 @@ RecorridosToDestinoMap.prototype.pinDestino=function(index){
         if(this.marker_destino!=null){
             this.map.removeMarker(this.marker_destino);
         }
-        this.marker_destino=this.map.addMarker(this.points.points[index].pt);
+        this.marker_destino=this.map.addMarker(
+            this.points.points[index].pt,
+            false,
+            function(e){
+                // Si quieren algun tipo de comportamiento ante el click del marker, este es el lugar
+                e.preventDefault();
+            }
+        );
         this.destino=this.points.points[index].pt;
     }
 };
@@ -240,7 +237,14 @@ RecorridosToDestinoMap.prototype.pinOrigen=function(){
         if(this.marker_origen!=null){
             this.map.removeMarker(this.marker_origen);
         }
-        this.marker_origen=this.map.addMarker(this.origen);
+        this.marker_origen=this.map.addMarker(
+            this.origen,
+            false,
+            function(e){
+                // Si quieren algun tipo de comportamiento ante el click del marker, este es el lugar
+                e.preventDefault();
+            }
+        );
     }
 };
 RecorridosToDestinoMap.prototype.zoomToOrigin=function(){
@@ -260,7 +264,10 @@ RecorridosToDestinoMap.prototype.zoomToMarkers=function(){
 	for(i=0;i<ms.length;i++){
 		this.bounds.extend(ms[i].lonlat);
 	}
-	this.map.api.zoomToExtent(this.bounds);
+	this.map.api.zoomToExtent(this.bounds,true);
+	if(this.map.api.zoom>6){
+	    this.map.api.zoomTo(6);
+	}
 };
 RecorridosToDestinoMap.prototype.buscarRecorridos=function(){
 	var cp=this;
@@ -344,24 +351,36 @@ RecorridosToDestinoMap.prototype.resetRecorridos=function(){
 	        }
 	    }
 	}
-}
+};
 RecorridosToDestinoMap.prototype.mostrarRecorrido=function(i){
 	var cp=this;
-	var detalle=cp.recorridos[i].getDetalle(
-		function(detalle) {
-			$('#'+cp.id).find('#recorridos .recorrido .detalle').each(
-				function(j){
-					var html='';
-					if(i==j){
-						for(var k=0;k<detalle.length;k++) {
-							html+='<li>'+detalle[k]+'</li>';
-						}
-						$(this).html('<p>'+html+'</p>');
-					}
-				}
-			);
-			cp.detalles[i]=detalle;
+	if(!cp.detalles[i]){
+    	cp.recorridos[i].getDetalle(
+    		function(detalle) {
+    		    var r_detalle='';
+    		    for(var k=0,l=detalle.length;k<l;k++){
+    		        r_detalle+='<li>'+detalle[k]+'</li>';
+    		    }
+    			cp.detalles[i]=r_detalle;
+    			cp.renderDetalle(i);
+    		},
+    		function(){
+    		    console.log('Se produjo un error al intentar cargar los detalles del recorrido.');
+    		}
+    	);
+	}else{
+	    cp.renderDetalle(i);
+	}
+	cp.map.mostrarRecorrido(cp.recorridos[i]);
+};
+RecorridosToDestinoMap.prototype.renderDetalle=function(i){
+    var cp=this;
+    $('#'+cp.id).find('#recorridos .recorrido .detalle').each(
+		function(j){
+			var html='';
+			if(i==j){
+				$(this).html(cp.detalles[i]);
+			}
 		}
 	);
-	cp.map.mostrarRecorrido(cp.recorridos[i]);	
 };
