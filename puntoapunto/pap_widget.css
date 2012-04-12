@@ -13,7 +13,7 @@
 .pap_widget ol{
     list-style-type: decimal;
 }
-.pap_widget ol, .pap_widget ul{
+.pap_widget ul{
     padding:0px;
 }
 .pap_widget strong{

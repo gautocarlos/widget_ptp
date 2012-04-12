@@ -364,6 +364,7 @@ RecorridosToDestinoMap.prototype.mostrarRecorrido=function(i){
     		    }
     			cp.detalles[i]=r_detalle;
     			cp.renderDetalle(i);
+    			cp.map.mostrarRecorrido(cp.recorridos[i]);
     		},
     		function(){
     		    console.log('Se produjo un error al intentar cargar los detalles del recorrido.');
@@ -371,8 +372,9 @@ RecorridosToDestinoMap.prototype.mostrarRecorrido=function(i){
     	);
 	}else{
 	    cp.renderDetalle(i);
+	    cp.map.mostrarRecorrido(cp.recorridos[i]);
 	}
-	cp.map.mostrarRecorrido(cp.recorridos[i]);
+
 };
 RecorridosToDestinoMap.prototype.renderDetalle=function(i){
     var cp=this;
