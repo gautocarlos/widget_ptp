@@ -313,8 +313,9 @@ RecorridosToDestinoMap.prototype.buscarRecorridos=function(){
     							cp.borrarRecorrido(i);
     						}else{
     							$(this).addClass('active');
-    							cp.mostrarRecorrido(i);	
+    							cp.mostrarRecorrido(i);
     						}
+							e.preventDefault();
     					});
     			});
 			}
