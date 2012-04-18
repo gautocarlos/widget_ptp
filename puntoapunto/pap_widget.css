@@ -15,6 +15,7 @@
 }
 .pap_widget ul{
     padding:0px;
+    margin-left:0px;
 }
 .pap_widget strong{
 	font-family:"MuseoSans700",Helvetica,Arial,Verdana,sans-serif;	
@@ -132,11 +133,11 @@
 	display:inline-block;
 }
 .pap_widget .recorridos .recorrido .references{
-	width:27%;
+	width:32%;
 	text-align:right;
 }
 .pap_widget .recorridos .recorrido .label{
-	width:71%;
+	width:65%;
 }
 .pap_widget .recorridos .recorrido .references .color{
 	width:15px;
@@ -153,6 +154,9 @@
 	padding-right:1%;
 	text-align:right;
 	color:#5E8CBB;
+}
+.pap_widget .recorridos .recorrido .detalle{
+    padding-left:20px;
 }
 .pap_widget .recorridos .recorrido .detalle li:nth-child(1){
 	margin-top:10px;
