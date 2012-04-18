@@ -40,22 +40,26 @@ function RecorridosToDestinoMap(div,destino,extended_width){
 	this.extended_height_inc=null;
 	this.div=div;
 	this.points=null;
+	this.initiating=false;
 	this.geocodeDestinos(destino);
 }
 RecorridosToDestinoMap.prototype.geocodeDestinos=function(destino){
     var cp=this;
     cp.points=new PointCollection();
     jQuery("body").bind('all-geocoded',function(e){
-        // Una vez que están geocodificados todos los puntos, inicializar el mapa
-        cp.init(cp.div);
-        jQuery("body").bind('map-initiated',function(ev){
-            cp.pinDestino(0);
-	    cp.map.api.numZoomLevels=2;
-            cp.zoomToMarkers();
-	    cp.initActions();
-            cp.initAutoComplete();
-            //cp.initFocusButtons();
-        });
+        if(!cp.initiating){
+            cp.initiating=true;
+            // Una vez que están geocodificados todos los puntos, inicializar el mapa
+            cp.init(cp.div);
+            jQuery("body").bind('map-initiated',function(ev){
+                cp.pinDestino(0);
+    	    cp.map.api.numZoomLevels=2;
+                cp.zoomToMarkers();
+    	    cp.initActions();
+                cp.initAutoComplete();
+                //cp.initFocusButtons();
+            });
+        }
     });
     for(var i=0;i<destino.length;i++){
         cp.points.addPoint(destino[i])
