@@ -19,18 +19,18 @@ Abstracción para facilitar geocoding de un arreglo de direcciones literales con
       console.log('all points geocoded');
     });
     points.geocode();
-  }
+  };
   ```
 
 ## RecorridosToDestinoMap
 
 Inicializa un widget a partir un arreglo de destinos posibles, un div target para hacer render del mapa. Utiza PointCollection internamente. Al momento está preparado para expandirse a partir de un sidebar sobre la derecha por lo que recibe el ancho total al cual se expande. A futuro, tenemos considerado separar lógica de layout de tal manera de facilitar nuevas aplicaciones utilizando y manteniendo comunes las abstracciones sobre la API de USIG.
 
-``` javascript
+  ``` javascript
   $(document).ready(function() {
 	  new RecorridosToDestinoMap(
 	    "id_target_div",
 	    Array('maipu 986','florida 448','Cabral 804'),
 	    940);
 	});
-```
+  ```
