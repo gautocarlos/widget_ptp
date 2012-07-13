@@ -143,14 +143,14 @@
        text-shadow: 0 0 0 rgba(0, 0, 0, 0)
 }
 .pap_widget .recorridos .recorrido .references .color{
-    width:15px;
-    height:15px;
-    margin:4px 2px 0px 9px;
-    background:#ccc url('images/over_sprite_iconos_mapa.png') no-repeat top right;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -khtml-border-radius: 8px;
-    border-radius: 8px;
+	width:15px;
+	height:15px;
+	margin:4px 2px 0px 9px;
+	background:#ccc url('images/over_sprite_iconos_mapa.png') no-repeat top right;
+	-moz-border-radius: 8px;
+   	-webkit-border-radius: 8px;
+   	-khtml-border-radius: 8px;
+   	border-radius: 8px;
 }
 .pap_widget .recorridos .recorrido .references .time{
     margin-left:1%;
