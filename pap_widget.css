@@ -57,15 +57,14 @@
     width:194px;
 }
 .pap_widget .search span{
-    
-    font-size:11px;
+	font-size:11px;
 }
 .pap_widget.expanded .left .search{
     float:left;
     
 }
 .pap_widget.expanded .search h3{
-    display:none;
+	display:none;
 }
 .pap_widget .search input{
     width:188px;
@@ -92,7 +91,7 @@
     text-align:center;
 }*/
 .pap_widget .search label{
-    color:#6D6F71;
+	color:#6D6F71;
 }
 
 .pap_widget .map{
