@@ -2,7 +2,7 @@
 
 Widget Mapa sobre API JavaScript de la Unidad de Sistemas de Información geográfica de la Agencia de Sistemas de Información del Gobierno de la Ciudad de Buenos Aires (USIG). *Al momento está usando la versión 2.3 de la misma* -> [documentación](http://servicios.usig.buenosaires.gov.ar/usig-js/2.3/doc/)
 
-Se desarrollaron 2 abstracciones sobre la API para poder trabajar con más facilidad sobre las necesidades:
+Se desarrollaron 2 abstracciones sobre la API para poder trabajar con más facilidad sobre las necesidades del desarrollo del [sitio de gobierno](http://buenosaires.gob.ar):
 
 ## PointCollection
 
@@ -28,6 +28,9 @@ Inicializa un widget a partir un arreglo de destinos posibles, un div target par
 
 ``` javascript
   $(document).ready(function() {
-	  new RecorridosToDestinoMap(<id_div_target>,Array('maipu 986','florida 448','Cabral 804'),<ancho_a_expandir>);
+	  new RecorridosToDestinoMap(
+	    <id_div_target>,
+	    Array('maipu 986','florida 448','Cabral 804'),
+	  <ancho_a_expandir>);
 	});
 ```
