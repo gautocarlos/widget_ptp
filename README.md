@@ -9,7 +9,7 @@ Se desarrollaron 2 abstracciones sobre la API para poder trabajar con más facil
 Abstracción para facilitar geocoding de un arreglo de direcciones literales con manejo de latencia de los pedidos a los servicios de USIG. Normaliza direcciones, hace geocoding de las mismas y dispara un evento cuando la tarea se completa. *Ejemplo de uso*:
 
   ``` javascript
-  $(document).ready(function() {
+  $(document).ready(function(){
     var dirs=Array('maipu y santa fe','lavalle 2304','9 de julio y tucuman');
     var points = new PointCollection();
     for(var i=0;i<dirs.lenght;i++){
@@ -27,7 +27,7 @@ Abstracción para facilitar geocoding de un arreglo de direcciones literales con
 Inicializa un widget a partir un arreglo de destinos posibles, un div target para hacer render del mapa. Utiza PointCollection internamente. Al momento está preparado para expandirse a partir de un sidebar sobre la derecha por lo que recibe el ancho total al cual se expande. A futuro, tenemos considerado separar lógica de layout de tal manera de facilitar nuevas aplicaciones utilizando y manteniendo comunes las abstracciones sobre la API de USIG.
 
   ``` javascript
-  $(document).ready(function() {
-	  new RecorridosToDestinoMap("id_target_div", Array('maipu 986','florida 448','Cabral 804'), 940);
-	});
+  $(document).ready(function(){
+    new RecorridosToDestinoMap("id_target_div", Array('maipu 986','florida 448','Cabral 804'), 940);
+  });
   ```
