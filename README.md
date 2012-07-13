@@ -24,7 +24,7 @@ Abstracción para facilitar geocoding de un arreglo de direcciones literales con
 
 ## RecorridosToDestinoMap
 
-Inicializa un widget a partir un arreglo de destinos posibles, un div target para hacer render del mapa. Utiza PointCollection internamente. Al momento está preparado para expandirse a partir de un sidebar sobre la derecha por lo que recibe el ancho total al cual se expande. A futuro, tenemos considerado separar lógica de layout de tal manera de facilitar nuevas aplicaciones utilizando y manteniendo comunes las abstracciones sobre la API de USIG.
+Inicializa un widget a partir un arreglo de destinos posibles, un div target para hacer render del mapa. Utiza PointCollection internamente. Al momento está preparado para expandirse a partir de un sidebar sobre la derecha por lo que recibe el ancho total al cual se expande. A futuro, tenemos considerado separar lógica de layout de tal manera de facilitar nuevas aplicaciones utilizando y manteniendo comunes las abstracciones sobre la API de USIG. *Ejemplo de uso:*
 
   ``` javascript
   $(document).ready(function(){
