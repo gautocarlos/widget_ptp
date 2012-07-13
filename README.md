@@ -28,9 +28,6 @@ Inicializa un widget a partir un arreglo de destinos posibles, un div target par
 
   ``` javascript
   $(document).ready(function() {
-	  new RecorridosToDestinoMap(
-	    "id_target_div",
-	    Array('maipu 986','florida 448','Cabral 804'),
-	    940);
+	  new RecorridosToDestinoMap("id_target_div", Array('maipu 986','florida 448','Cabral 804'), 940);
 	});
   ```
