@@ -57,12 +57,11 @@
     width:194px;
 }
 .pap_widget .search span{
-    
     font-size:11px;
 }
 .pap_widget.expanded .left .search{
     float:left;
-    
+    height:57px;
 }
 .pap_widget.expanded .search h3{
     display:none;
@@ -102,7 +101,7 @@
     display:none;
 }
 .pap_widget .recorridos{
-    margin-top:40px;
+    margin-top:10px;
     font-size:12px;
     -webkit-padding-start: 0px;
     overflow:hidden;
@@ -134,14 +133,15 @@
     display:inline-block;
 }
 .pap_widget .recorridos .recorrido .references{
-    width: 30%;
+    width:32%;
     text-align:right;
 }
+
 .pap_widget .recorridos .recorrido .label{
-    width:65%;
-    background: none;
-    color: #333;
-       text-shadow: 0 0 0 rgba(0, 0, 0, 0)
+    width:60%;
+    background:none;
+    text-shadow:none;
+    color:black;
 }
 .pap_widget .recorridos .recorrido .references .color{
     width:15px;
