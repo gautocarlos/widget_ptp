@@ -1,14 +1,14 @@
 .pap_widget, .usig_acv{
-	font-family:"MuseoSans500",Helvetica,Arial,Verdana,sans-serif;
+    font-family:"MuseoSans500",Helvetica,Arial,Verdana,sans-serif;
 }
 .pap_widget{
-	font-size:12px;	
-	color:#333;
-	position:relative;
-	width:100%;
-	margin-bottom:10px;
-	font-size:12px;
-	color:#393A39;
+    font-size:12px; 
+    color:#333;
+    position:relative;
+    width:100%;
+    margin-bottom:10px;
+    font-size:12px;
+    color:#393A39;
 }
 .pap_widget ol{
     list-style-type: decimal;
@@ -18,63 +18,64 @@
     margin-left:0px;
 }
 .pap_widget strong{
-	font-family:"MuseoSans700",Helvetica,Arial,Verdana,sans-serif;	
+    font-family:"MuseoSans700",Helvetica,Arial,Verdana,sans-serif;  
 }
 .pap_widget h3{
-    font-family:"MuseoSans700",Helvetica,Arial,Verdana,sans-serif;	
-	color:#6D6F71;
-	font-weight:normal;
-	font-size:15px;
+    font-family:"MuseoSans700",Helvetica,Arial,Verdana,sans-serif;  
+    color:#6D6F71;
+    font-weight:normal;
+    font-size:15px;
 }
 .pap_widget .wrapper{
-	border:thin solid #D3D3D3;
-	background-color:white;
+    border:thin solid #D3D3D3;
+    background-color:white;
 }
 .pap_widget.expanded .wrapper{
-	-moz-box-shadow: 0px 0px 5px #DDD;
-	-webkit-box-shadow: 0px 0px 5px #DDD;
-	box-shadow: 0px 0px 5px #DDD;
+    -moz-box-shadow: 0px 0px 5px #DDD;
+    -webkit-box-shadow: 0px 0px 5px #DDD;
+    box-shadow: 0px 0px 5px #DDD;
 }
 .pap_widget .left,.pap_widget .right{
-	position:relative;
+    position:relative;
 }
 .pap_widget.expanded .left,.pap_widget.expanded .right{
-	float:left;
+    float:left;
 }
 .pap_widget .left .destino{
-	float:none;
+    float:none;
 }
 .pap_widget.expanded .left .destino{
-	display:block;
+    display:block;
 }
 .pap_widget .mapwrapper, .pap_widget .focusbuttons,.pap_widget .search, .pap_widget .recorridos .recorrido{
-	padding:10px;
+    padding:10px;
 }
 .pap_widget.expanded .mapwrapper{
-	padding-right:0px;
+    padding-right:0px;
 }
 .pap_widget .left .search{
-	width:194px;
+    width:194px;
 }
 .pap_widget .search span{
-	font-size:11px;
+    
+    font-size:11px;
 }
 .pap_widget.expanded .left .search{
-	float:left;
-	height:57px;
+    float:left;
+    
 }
 .pap_widget.expanded .search h3{
-	display:none;
+    display:none;
 }
 .pap_widget .search input{
-	width:188px;
-	padding:4px;
-	outline:none;
-	color:#393A39;
-	border:thin solid #D3D3D3;
+    width:188px;
+    padding:4px;
+    outline:none;
+    color:#393A39;
+    border:thin solid #D3D3D3;
 }
 .pap_widget .search input.non-editable{
-	background-color:#E9E9E9;
+    background-color:#E9E9E9;
 }
 .pap_widget .search select{
     width:188px;
@@ -82,84 +83,87 @@
     outline:none;
 }
 /*.pap_widget .search.submit{
-	margin-right:10px;
-	float:right;
-	padding:5px 5px;
-	width:120px;
-	border:thin solid #D3D3D3;
-	background:url('images/textura_buscar_recorrido.png') repeat top left;
-	text-align:center;
+    margin-right:10px;
+    float:right;
+    padding:5px 5px;
+    width:120px;
+    border:thin solid #D3D3D3;
+    background:url('images/textura_buscar_recorrido.png') repeat top left;
+    text-align:center;
 }*/
 .pap_widget .search label{
-	color:#6D6F71;
+    color:#6D6F71;
 }
 
 .pap_widget .map{
-	height:400px;
+    height:400px;
 }
 .pap_widget .hidden{
-	display:none;
+    display:none;
 }
 .pap_widget .recorridos{
-	margin-top:10px;
-	font-size:12px;
-	-webkit-padding-start: 0px;
-	overflow:hidden;
+    margin-top:40px;
+    font-size:12px;
+    -webkit-padding-start: 0px;
+    overflow:hidden;
     overflow-y: auto;
 }
 .pap_widget .right{
-	display:none;
+    display:none;
 }
 .pap_widget.expanded .right{
-	display:block;
+    display:block;
 }
 .pap_widget .right h3{
-	display:block;
-	margin:10px 0px 0px;
-	padding:10px;
-	height:47px;
+    display:block;
+    margin:10px 0px 0px;
+    padding:10px;
+    height:47px;
 }
 .pap_widget .recorridos .recorrido{
-	padding:5px 15px;
-	cursor:pointer;
-	display: block;
-	min-height:24px;
-	background:url('images/recorrido_background.png') top center repeat-x;
+    padding:5px 15px;
+    cursor:pointer;
+    display: block;
+    min-height:24px;
+    background:url('images/recorrido_background.png') top center repeat-x;
 }
 .pap_widget .recorridos .recorrido:hover{
-	background:url('images/recorrido_background_over.png') top center repeat-x;
+    background:url('images/recorrido_background_over.png') top center repeat-x;
 }
 .pap_widget .recorridos .recorrido div{
-	display:inline-block;
+    display:inline-block;
 }
 .pap_widget .recorridos .recorrido .references{
-	width:32%;
-	text-align:right;
+    width: 30%;
+    text-align:right;
 }
 .pap_widget .recorridos .recorrido .label{
-	width:65%;
+    width:65%;
+    background: none;
+    color: #333;
+       text-shadow: 0 0 0 rgba(0, 0, 0, 0)
 }
 .pap_widget .recorridos .recorrido .references .color{
-	width:15px;
-	height:15px;
-	margin:4px 2px 0px 9px;
-	background:#ccc url('images/over_sprite_iconos_mapa.png') no-repeat top right;
-	-moz-border-radius: 8px;
-   	-webkit-border-radius: 8px;
-   	-khtml-border-radius: 8px;
-   	border-radius: 8px;
+    width:15px;
+    height:15px;
+    margin:4px 2px 0px 9px;
+    background:#ccc url('images/over_sprite_iconos_mapa.png') no-repeat top right;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
 }
 .pap_widget .recorridos .recorrido .references .time{
-	margin-left:1%;
-	padding-right:1%;
-	text-align:right;
-	color:#5E8CBB;
+    margin-left:1%;
+    padding-right:1%;
+    text-align:right;
+    color:#5E8CBB;
 }
 .pap_widget .recorridos .recorrido .detalle{
     padding-left:20px;
 }
 .pap_widget .recorridos .recorrido .detalle li:nth-child(1){
-	margin-top:10px;
+    margin-top:10px;
 }
 .pap_widget .actions{
     position:relative;
