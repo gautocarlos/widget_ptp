@@ -47,36 +47,24 @@ PointCollection.prototype.geocode=function(){
     }  
 };
 function GCPoint(street_n_number){
-    var parts=street_n_number.split(' ');
-    var n=-1;
-    for(var i=0;i<parts.length;i++){
-        var t=parseInt(parts[i]);
-        if(!isNaN(t) && t!=0){
-            if(i==0||i==parts.length-1){
-                n=i;
-                break;
-            }
-        }
-    }
-    if(n!=-1){
-        this.number=n!=0?parts.pop():parts.shift();
-    }
     this.id=street_n_number;
     this.pt=null;
     this.geocoded=false;
-    this.street=parts.join(' ');
+    this.street=street_n_number;
     if(GCPoint.gc==undefined){
         GCPoint.gc=new usig.GeoCoder();
     }
 }
 GCPoint.prototype.geocode=function(){
   var cp=this;
-  var calle=usig.NormalizadorDirecciones.normalizar(cp.street,1)[0];
-  cp.id=calle.nombre+" "+cp.number;
-  GCPoint.gc.geoCodificarCodigoDeCalleAltura(
-      calle.codigo,
-      cp.number,
+  console.log(usig.NormalizadorDirecciones.normalizar(cp.street,1));
+  var direccion=usig.NormalizadorDirecciones.normalizar(cp.street,1)[0];
+  console.log(direccion);
+  cp.id=cp.street;
+  GCPoint.gc.geoCodificarDireccion(
+      direccion,
       function(response){
+      console.log(response);
           if(response instanceof usig.Punto){
               cp.pt=response;
               cp.geocoded=true;
