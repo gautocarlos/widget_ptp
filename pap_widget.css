@@ -197,6 +197,7 @@
 }
 .pap_widget .actions .search.close{
     display:none;
+    opacity: 1;
 }
 .pap_widget.expanded .actions .search.open{
     display: none;
