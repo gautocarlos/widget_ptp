@@ -137,7 +137,10 @@
 	text-align:right;
 }
 .pap_widget .recorridos .recorrido .label{
-	width:65%;
+    width:60%;
+    background:none;
+    text-shadow:none;
+    color:black;
 }
 .pap_widget .recorridos .recorrido .references .color{
 	width:15px;
