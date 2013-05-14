@@ -1,11 +1,12 @@
 function BasicMap(){
 	this.id=null;
-	this.width;
+	this.width = null;
+    this.dev = false;
 	this.ready=false;
 	this.map=null;
 	this.std_weight=null;
 	this.border_width=null;
-	this.styles='<link rel="stylesheet" type="text/css" media="screen" href="http://gcba.github.io/widget_ptp/fonts.css"/><link rel="stylesheet" type="text/css" media="screen" href="http://gcba.github.io/widget_ptp/pap_widget.css"/>';
+    this.styles='<link rel="stylesheet" type="text/css" media="screen" href="http://gcba.github.io/widget_ptp/fonts.css"/><link rel="stylesheet" type="text/css" media="screen" href="http://gcba.github.io/widget_ptp/pap_widget.css"/>';
 }
 BasicMap.prototype.init=function(div){
 	var cp=this;

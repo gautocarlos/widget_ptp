@@ -1,3 +1,4 @@
+
 function PointCollection(){
     this.points=[];
     this.geocoding=false;
