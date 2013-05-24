@@ -1,3 +1,4 @@
+// Wrapper para hacer render de mapa basico de usig
 function BasicMap(){
 	this.id=null;
 	this.width = null;
