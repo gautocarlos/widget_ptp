@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>  
+<title>Widget PTP</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://servicios.usig.buenosaires.gob.ar/usig-js/3.0/usig.AutoCompleterFull.min.js"></script>
+<script type="text/javascript" src="http://servicios.usig.buenosaires.gob.ar/usig-js/3.0/usig.RecorridosFull.min.js"></script>
+<script type="text/javascript" src="http://servicios.usig.buenosaires.gob.ar/usig-js/3.0/usig.MapaInteractivo.min.js"></script>
+<script type="text/javascript" src="geocode_utils.js"></script>
+<script type="text/javascript" src="pap_widget.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="layout.css"/>
+</head>
+<body>
+<div class="container_12">
+	<div class="grid_9">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit erat, feugiat eu tempor vel, sagittis nec ipsum. Ut rhoncus enim non ante auctor eleifend. Vestibulum semper auctor nunc, eget fermentum tellus sagittis a. Donec sollicitudin eros at dui tempor mattis. In hac habitasse platea dictumst. Pellentesque vel ante diam. Fusce diam mauris, egestas ut dignissim in, dignissim non nisl. Nam sagittis lacus ut elit vestibulum elementum. Pellentesque facilisis commodo nisl et luctus. Aliquam a nisi sit amet arcu laoreet venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+		<p>Suspendisse potenti. Aenean porta imperdiet nulla, at pellentesque ligula congue non. Praesent id sem justo. Suspendisse potenti. Sed iaculis nisi quis neque consectetur non pulvinar quam vestibulum. Nam vitae tellus enim. Sed adipiscing dapibus luctus. Suspendisse potenti. Ut eros sem, sagittis eu congue vitae, facilisis vel elit. Curabitur sed leo elit, eu commodo elit. In non pharetra sem. Mauris varius neque a tellus rutrum vel molestie orci fermentum.</p>
+
+		<p>Vivamus at consectetur ante. Phasellus elementum arcu nec est tristique tempus vestibulum libero fringilla. Etiam vulputate lacinia semper. Quisque ut nunc elit. Morbi aliquam, diam a lacinia viverra, sapien leo hendrerit diam, in euismod magna augue lacinia tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet odio id urna adipiscing tempus. Duis ante turpis, convallis a faucibus mattis, tempor et nisi. Sed quis consequat mauris. Nullam ante purus, aliquet vitae euismod ac, laoreet at arcu. Aenean sem lacus, aliquam ac congue quis, adipiscing vel odio. Fusce sit amet laoreet turpis. Suspendisse auctor gravida dui a rhoncus. Donec ultrices scelerisque quam ac sodales. Curabitur porta leo vel elit condimentum sollicitudin.</p>
+
+		<p>Praesent et nunc ac diam malesuada congue eget eget purus. Suspendisse feugiat laoreet massa, quis faucibus turpis rutrum in. Donec eleifend massa quis odio posuere non dapibus massa euismod. In quis quam nisl, ut iaculis dolor. Etiam turpis justo, scelerisque id cursus rutrum, fringilla sit amet mauris. Aenean aliquam rutrum augue nec congue. Aliquam ut diam lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus tempus purus vel consectetur. Ut et sodales risus. Vivamus ut nunc ut est imperdiet suscipit. Nam ac lorem accumsan sapien ultricies semper eu eu nunc. In lacus nibh, cursus id luctus a, varius vitae orci. Aliquam sed lacus dolor, in ornare justo. Mauris sodales nisl vitae elit iaculis non laoreet mi cursus. Vivamus fringilla tortor et nisl adipiscing quis lacinia nunc laoreet.</p>
+
+		<p>Sed tempor magna a est suscipit facilisis. Phasellus tincidunt augue non diam tempus dictum. Quisque at lectus justo, egestas fermentum nunc. Pellentesque scelerisque, felis in gravida porttitor, nisl lorem dapibus elit, vel malesuada lacus neque eget velit. Nam id eros tortor. Aenean urna odio, adipiscing nec cursus ut, varius quis ante. Donec eget erat vitae nunc ultrices aliquam ac sit amet urna. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Phasellus blandit euismod molestie. Nullam ipsum magna, aliquet a dignissim ut, faucibus et mauris. Integer a justo a nisl fringilla malesuada a eget sem.</p>
+	</div>
+	<div class="grid_3">
+		<div id="widget_punto_a_punto">
+		</div>
+		<div>
+			More content
+		</div>
+	</div>
+	<script type="text/javascript">
+	  $(document).ready(function() {
+		  new RecorridosToDestinoMap('widget_punto_a_punto', Array('maipu 986','florida 448','Cabral 804'),940);
+	  });
+	</script>
+	<div class="clear"></div>
+</div>
+</body>
+</html>
